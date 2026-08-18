@@ -43,7 +43,9 @@ fun IslandRecorderTheme(
     val controller = remember(isDark) {
         ThemeController(
             colorSchemeMode = colorSchemeMode,
-            isDark = isDark
+            isDark = isDark,
+            lightColors = colorosLightColors(),
+            darkColors = colorosDarkColors()
         )
     }
 
