@@ -51,20 +51,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    flavorDimensions.addAll(listOf("level"))
-
-    productFlavors {
-        create("Unstable") {
-            dimension = "level"
-            isDefault = true
-            versionNameSuffix = ".${project.getGitHash()}"
-        }
-
-        create("Stable") {
-            dimension = "level"
-            versionNameSuffix = ".${project.getGitHash()}"
-        }
-    }
 
     signingConfigs {
         create("release") {
