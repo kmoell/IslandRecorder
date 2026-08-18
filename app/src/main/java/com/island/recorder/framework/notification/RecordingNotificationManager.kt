@@ -59,6 +59,7 @@ class RecordingNotificationManager(
         const val NOTIFICATION_ID = 1001
         private const val XMSF_PACKAGE = "com.xiaomi.xmsf"
         private const val SUPER_ISLAND_HIGHLIGHT_COLOR = "#FB382F"
+        private const val SUPER_ISLAND_BIG_TICKER_KEY = "miui.focus.pic_ticker_big"
         private const val SUPER_ISLAND_BLOCKING_INTERVAL_MS = 125
         private const val ACTION_PAUSE_RESUME_REQUEST_CODE = 1
         private const val ACTION_STOP_REQUEST_CODE = 2
@@ -323,7 +324,7 @@ class RecordingNotificationManager(
                                 "picInfo",
                                 JSONObject().apply {
                                     put("type", 1)
-                                    put("pic", tickerIconKey)
+                                    put("pic", SUPER_ISLAND_BIG_TICKER_KEY)
                                 }
                             )
                         }
@@ -358,20 +359,10 @@ class RecordingNotificationManager(
         JSONObject().apply {
             put("timerInfo", timerInfo)
             put(
-                "animIconInfo",
-                JSONObject().apply {
-                    put("type", 1)
-                    put("src", "voiceWaveBig")
-                    put("number", 0)
-                    put("loop", !payload.isPaused)
-                    put("autoplay", !payload.isPaused)
-                }
-            )
-            put(
                 "picInfo",
                 JSONObject().apply {
                     put("type", 1)
-                    put("pic", tickerIconKey)
+                    put("pic", SUPER_ISLAND_BIG_TICKER_KEY)
                 }
             )
         }
@@ -404,6 +395,10 @@ class RecordingNotificationManager(
             putParcelable(
                 "miui.focus.pic_ticker",
                 Icon.createWithResource(context, tickerIconRes)
+            )
+            putParcelable(
+                "miui.focus.pic_ticker_big",
+                Icon.createWithResource(context, R.drawable.ic_focus_dot)
             )
             putParcelable(
                 "miui.focus.pic_pause",
