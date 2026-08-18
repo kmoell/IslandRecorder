@@ -217,6 +217,16 @@ class RecordingShortcutActivity : ComponentActivity() {
                     DialogDefaults.MaxWidth
                 }
 
+                val dialogOutsideMargin = if (isLandscape) {
+                    DpSize(
+                        width = ((windowWidth - dialogMaxWidth) / 2)
+                            .coerceAtLeast(DialogDefaults.outsideMargin.width),
+                        height = DialogDefaults.outsideMargin.height
+                    )
+                } else {
+                    DialogDefaults.outsideMargin
+                }
+
                 WindowDialog(
                     show = showDialog,
                     onDismissRequest = {
@@ -225,7 +235,7 @@ class RecordingShortcutActivity : ComponentActivity() {
                     },
                     title = null,
                     insideMargin = DpSize.Zero,
-                    maxWidth = dialogMaxWidth
+                    outsideMargin = dialogOutsideMargin
                 ) {
                     if (isLandscape) {
                         // Landscape: full-width title/summary, then options | divider | buttons.
